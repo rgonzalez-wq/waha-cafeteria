@@ -1,14 +1,17 @@
-version: '3'
-services:
-  waha:
-    image: devlikeapro/waha:latest
-    restart: always
-    ports:
-      - "3000:3000"
-    environment:
-      - WHATSAPP_API_KEY=omnix-cafe-2024
-      - WHATSAPP_SWAGGER_ENABLED=true
-    volumes:
-      - waha_data:/app/.sessions
-volumes:
-  waha_data:
+ervices:
+  - type: web
+    name: waha-cafeteria
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: WHATSAPP_API_KEY
+        value: omnix-cafe-2024
+      - key: WHATSAPP_SWAGGER_ENABLED
+        value: "true"
+      - key: WAHA_DASHBOARD_ENABLED
+        value: "true"
+      - key: WAHA_DASHBOARD_USERNAME
+        value: admin
+      - key: WAHA_DASHBOARD_PASSWORD
+        sync: false
